@@ -12,37 +12,37 @@ public class MainApp {
 	 * @param args
 	 * @throws IOException 
 	 */
-	
+
 	public static void main(String[] args) throws IOException{
 		int option = showMenu();
 		while(option != 0){
 			switch(option){
-				case 1:
-					User u = addNewUser();
-					arrayUsers[numUsers] = u;					
-					numUsers++;
-					break;
-				case 2:
-					boolean readingError;
-					do{ 
-						System.out.println("Which user? (insert array index)");
-						BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-						try{
-							int index = Integer.parseInt(buffer.readLine());
-							modifyUser(arrayUsers[index]);
-							readingError = false;
-						}catch(Exception e){
-							System.out.println("There is no user in the given index");
-							readingError = true;
-						}
-					}while(readingError);
-					break;
-				case 3:
-					break;
-					
-					
-				case 0:
-					break;
+			case 1:
+				User u = addNewUser();
+				arrayUsers[numUsers] = u;					
+				numUsers++;
+				break;
+			case 2:
+				boolean readingError;
+				do{ 
+					System.out.println("Which user? (insert array index)");
+					BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+					try{
+						int index = Integer.parseInt(buffer.readLine());
+						modifyUser(arrayUsers[index]);
+						readingError = false;
+					}catch(Exception e){
+						System.out.println("There is no user in the given index");
+						readingError = true;
+					}
+				}while(readingError);
+				break;
+			case 3:
+				break;
+
+
+			case 0:
+				break;
 			}
 			option = showMenu();
 		}
@@ -82,7 +82,7 @@ public class MainApp {
 	 * @return
 	 */
 	public static User addNewUser() {
-		
+
 		int id, age; id = age = -1;
 		String name, surname; name = surname = "";
 		boolean readingError;
@@ -104,7 +104,7 @@ public class MainApp {
 		} while(readingError);
 		return new User(id, name, surname, age);
 	}
-	
+
 	public static void modifyUser(User user){
 		System.out.println("===== Current user data =====");
 		System.out.println(user.toString());
@@ -118,16 +118,16 @@ public class MainApp {
 	}
 
 	public static void deleteUser(int id) {
-		
+
 		for (int i = 0; i < arrayUsers.length; i++) {
-			
+
 			if(id==arrayUsers[i].getId()) {
 				arrayUsers[i]=null;
 			}
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 }
