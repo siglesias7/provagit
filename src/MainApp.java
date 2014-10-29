@@ -3,12 +3,17 @@ import java.io.*;
 public class MainApp {
 
 	private static User arrayUsers[] = new User[10];
+	private static Course arrayCourses[] = new Course[10];
 	private static int numUsers = 0;
+	private static int numCourses = 0;
+	private static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 	/**
 	 * Main function
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args){
+	
+	public static void main(String[] args) throws IOException{
 		int option = showMenu();
 		while(option != 0){
 			switch(option){
@@ -34,6 +39,8 @@ public class MainApp {
 					break;
 				case 3:
 					break;
+					
+					
 				case 0:
 					break;
 			}
@@ -56,6 +63,8 @@ public class MainApp {
 			System.out.println("1. - Add new User");
 			System.out.println("2. - Modify existing User");
 			System.out.println("3. - Delete User (TODO)");
+			System.out.println("4. - Add new course");
+			System.out.println("5. - Delete course");
 			System.out.println("0. - Exit");
 			try{
 				String option = buffer.readLine();	
@@ -73,12 +82,12 @@ public class MainApp {
 	 * @return
 	 */
 	public static User addNewUser() {
+		
 		int id, age; id = age = -1;
 		String name, surname; name = surname = "";
 		boolean readingError;
 		do {
 			try{
-				BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 				System.out.println("id:");
 				id = Integer.parseInt(buffer.readLine());
 				System.out.println("Name:");
@@ -95,7 +104,7 @@ public class MainApp {
 		} while(readingError);
 		return new User(id, name, surname, age);
 	}
-
+	
 	public static void modifyUser(User user){
 		System.out.println("===== Current user data =====");
 		System.out.println(user.toString());
@@ -108,4 +117,17 @@ public class MainApp {
 		System.out.println("Changes done!");
 	}
 
+	public static void deleteUser(int id) {
+		
+		for (int i = 0; i < arrayUsers.length; i++) {
+			
+			if(id==arrayUsers[i].getId()) {
+				arrayUsers[i]=null;
+			}
+			
+		}
+		
+	}
+	
+	
 }
